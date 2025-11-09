@@ -1,0 +1,13 @@
+.
+├── README.md
+├── folder_structure.txt
+├── main.py
+├── report
+│   ├── report.md
+│   ├── report.pdf
+│   ├── report.tex
+│   └── screenshot.png
+├── requirements.txt
+└── sample.mp4
+
+2 directories, 9 files
