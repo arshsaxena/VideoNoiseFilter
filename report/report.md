@@ -29,19 +29,19 @@ Our research aims to develop and evaluate a comprehensive video denoising system
 - Evaluate methods using both quantitative metrics and visual quality
 - Support both synthetic noise analysis and real-world video processing
 
-### 2.1 Noise Sources
+### 3.1 Noise Sources
 
 Modern video systems encounter several noise sources [16]. Sensor noise occurs when camera sensors create thermal and photon noise, especially in low light conditions [17]. Transmission noise happens when signal transmission adds random interference to the original video data [18]. Compression artifacts result from lossy compression algorithms that create quantization noise and reduce image quality [19]. Environmental factors include external electromagnetic interference and changing lighting conditions that add unwanted noise components to the captured video [20].
 
-### 2.2 Impact on Applications
+### 3.2 Impact on Applications
 
 Noise in videos causes problems in many different areas. In medical imaging, noise can hide important diagnostic information that doctors need to make accurate diagnoses. Surveillance systems suffer from reduced automatic detection accuracy when noise interferes with object recognition algorithms. The entertainment industry faces degraded viewing experiences when noise makes videos look poor quality. Scientific research applications have problems with accurate measurements when noise interferes with data analysis processes.
 
-### 2.3 Technical Challenges
+### 3.3 Technical Challenges
 
 Video denoising faces several important difficulties. Different noise types require specialized treatment approaches since each type has unique characteristics and removal techniques. Detail preservation is challenging because removing noise without losing important image details requires careful balance. Speed requirements are critical since real-time applications need fast algorithms that can process high-resolution video streams quickly. Edge preservation remains difficult because maintaining sharp edges and fine details while removing noise is technically complex. Quality measurement is problematic since establishing reliable metrics for different scenarios and content types is not straightforward.
 
-### 2.4 Research Goals
+### 3.4 Research Goals
 
 This study aims to accomplish several important objectives. First, we compare traditional DSP and AI-based denoising methods to understand their relative strengths and weaknesses. Second, we measure performance using PSNR, SNR, and frequency analysis to provide a quantitative evaluation. Third, we build a practical system for comparing different approaches in real-time to help users make informed decisions. Finally, we provide clear guidelines for choosing the right technique based on specific application requirements and constraints.
 
@@ -49,7 +49,7 @@ This study aims to accomplish several important objectives. First, we compare tr
 
 Video denoising research has developed over decades, moving from traditional signal processing to modern AI methods.
 
-### 3.1 Traditional Methods
+### 4.1 Traditional Methods
 
 **Median Filtering**: Introduced by Tukey [3], excellent for removing impulse noise while preserving edges. Works by replacing each pixel with the median value of its neighbors.
 
@@ -57,19 +57,19 @@ Video denoising research has developed over decades, moving from traditional sig
 
 **Bilateral Filtering**: Combines spatial and intensity filtering [4]. Preserves edges while smoothing noise by considering both location and intensity similarity.
 
-### 3.2 Frequency Domain Methods
+### 4.2 Frequency Domain Methods
 
 **Fourier Transform**: Uses frequency characteristics of signals and noise for filtering [8]. Wiener filtering provides optimal noise reduction in the frequency domain.
 
 **Wavelet Transform**: Enables multi-resolution analysis for denoising [10]. Wavelet shrinkage methods preserve signal features while removing noise.
 
-### 3.3 AI and Deep Learning
+### 4.3 AI and Deep Learning
 
 **Convolutional Neural Networks**: LeCun et al. [5] established CNN architectures for image processing. CNNs can learn effective denoising from data rather than using hand-crafted filters.
 
 **DnCNN Architecture**: Zhang et al. [6] introduced this network using residual learning and batch normalization. It learns to predict noise patterns and subtract them from noisy images.
 
-### 3.4 Performance Evaluation
+### 4.4 Performance Evaluation
 
 **Quality Metrics**: PSNR and SSIM have become standard for denoising evaluation [7]. SSIM better matches human visual perception compared to simple pixel-based metrics.
 
@@ -77,7 +77,7 @@ Video denoising research has developed over decades, moving from traditional sig
 
 ## 5. Data Preprocessing
 
-### 4.1 Dataset
+### 5.1 Dataset
 
 We used diverse video sequences to test denoising performance across different content types. The dataset includes natural outdoor scenes with varying lighting conditions, indoor controlled environments with different backgrounds, computer-generated synthetic content with known ground truth, and standard test sequences like Foreman and Akiyo that are commonly used in video processing research.
 
@@ -88,7 +88,7 @@ Our platform implements two distinct processing approaches:
 - **Synthetic Noise Analysis:** Adds controlled noise to clean videos for testing
 - **Real-World Denoising:** Processes already noisy videos with automatic noise detection
 
-### 4.2 Noise Models
+### 5.2 Noise Models
 
 We implemented three noise types to simulate real-world conditions:
 
@@ -157,7 +157,7 @@ For videos without clean reference, we implemented:
 
 ## 7. Results Analysis
 
-### 5.1 Performance Analysis
+### 7.1 Performance Analysis
 
 Table 1 shows PSNR performance results across different noise types. Higher PSNR values indicate better denoising performance.
 
@@ -170,7 +170,7 @@ Table 1 shows PSNR performance results across different noise types. Higher PSNR
 
 The results show clear patterns in method effectiveness. For Gaussian noise, the CNN method achieves the highest PSNR at 28.45 dB, followed by bilateral filtering at 25.12 dB. For salt-and-pepper noise, median filtering performs best at 31.22 dB, which is expected since median filtering is specifically designed for impulse noise. For speckle noise, the CNN method again shows superior performance at 26.78 dB.
 
-### 5.2 Processing Speed
+### 7.2 Processing Speed
 
 Table 2 compares processing speeds for different methods when processing 720p video content.
 
@@ -188,7 +188,7 @@ Based on our implementation, for 30fps video:
 - AI with GPU: Near real-time (33ms budget vs 45-60ms actual)  
 - AI with CPU: Not real-time (33ms budget vs 200-300ms actual)
 
-### 5.3 Quality Assessment
+### 7.3 Quality Assessment
 
 Table 3 summarizes quality assessment metrics across different methods.
 
@@ -200,7 +200,7 @@ Table 3 summarizes quality assessment metrics across different methods.
 
 The CNN method consistently achieved SSIM values above 0.85 across all noise types, indicating excellent structural similarity preservation. Traditional methods showed SSIM values between 0.72-0.82, with bilateral filtering performing best among them. For edge preservation, bilateral filtering demonstrated the best performance among traditional methods, while the CNN method showed superior overall structural preservation. In frequency domain analysis, traditional filters often created unwanted artifacts in high-frequency regions, while the CNN approach maintained better frequency response characteristics. The frequency analysis workflow is integrated into our system architecture as shown in Figure 1.
 
-### 5.4 Statistical Analysis
+### 7.4 Statistical Analysis
 
 Our statistical analysis used cross-validation with k=5 folds to ensure reliable performance estimates. The CNN approach showed consistent performance with low variance of σ=0.78 dB in PSNR measurements, indicating good generalization capabilities across different video content types. Traditional methods demonstrated higher variance in performance, especially when dealing with diverse noise characteristics and different video content.
 
@@ -216,7 +216,7 @@ These statistical tests confirm that the performance differences observed in our
 
 ## 8. Discussion
 
-### 6.1 Key Findings
+### 8.1 Key Findings
 
 No single method works best for all situations, which is an important finding for practical applications. Traditional methods excel in processing speed and handle specific noise types very effectively, making them suitable for real-time applications with known noise characteristics. AI methods demonstrate better performance when dealing with complex noise patterns and show superior edge preservation capabilities, making them ideal for quality-critical applications where processing time is less important.
 
@@ -224,7 +224,7 @@ Traditional methods offer several important strengths. They provide fast process
 
 AI methods bring different advantages to video denoising. They handle complex noise patterns much better than traditional approaches, provide superior edge preservation that maintains important image details, adapt automatically to different noise patterns without manual parameter adjustment, and deliver higher overall quality in challenging scenarios where traditional methods struggle.
 
-### 6.2 Practical Implications
+### 8.2 Practical Implications
 
 For real-time applications, traditional methods are strongly recommended due to their speed requirements and reliable performance. These applications benefit from the predictable processing times and low computational overhead that traditional filters provide.
 
@@ -239,7 +239,7 @@ Our dual-mode system provides practical advantages:
 - **Interactive:** Web interface enables immediate comparison of all methods
 - **Flexible:** Adjustable parameters for each filter method
 
-### 6.3 Limitations
+### 8.3 Limitations
 
 Our study has several important limitations that should be considered when interpreting the results. The research focuses primarily on additive noise models, which may not fully represent the complexity of real-world video degradation where multiple noise sources interact. We used mainly synthetic and standard test sequences, which might not capture the full diversity of real-world video content and authentic noise patterns. The CNN architecture we implemented is simplified compared to current state-of-the-art deep learning models, so more advanced networks might show even better performance. Finally, our evaluation does not fully cover the wide range of noise patterns that occur in practical video applications, particularly those from specific industries or specialized equipment.
 
@@ -247,15 +247,15 @@ Our study has several important limitations that should be considered when inter
 
 This research successfully developed and evaluated a comprehensive video denoising platform comparing traditional and AI-based approaches. The interactive system allows direct comparison of different methods under controlled conditions.
 
-### 7.1 Main Contributions
+### 9.1 Main Contributions
 
 This research makes several important contributions to the field of video denoising. We created an integrated platform that enables direct comparison of traditional and AI denoising methods under controlled conditions, allowing researchers and practitioners to evaluate different approaches systematically. Our practical implementation provides a working system with an interactive web interface that demonstrates the real-world applicability of various denoising techniques. We established comprehensive evaluation protocols using standardized metrics including PSNR, SNR, and frequency domain analysis, creating a framework for consistent performance assessment. Finally, we developed evidence-based recommendations for method selection that help users choose appropriate techniques based on their specific application requirements and constraints.
 
-### 7.2 Research Impact
+### 9.2 Research Impact
 
 The platform serves as both a research tool and an educational resource. It helps users understand denoising principles through hands-on exploration and assists in practical method selection based on specific requirements.
 
-### 7.3 Future Work
+### 9.3 Future Work
 
 Future developments could significantly expand the capabilities and applications of this research. Implementing more advanced CNN architectures could improve denoising performance and efficiency, particularly those designed for real-time processing. Developing automatic method selection algorithms based on noise characteristics would help users choose optimal techniques without manual analysis. Real-time optimization techniques for deep learning approaches could bridge the performance gap between traditional and AI methods. An extended evaluation using real-world datasets would provide better validation of practical effectiveness. Mobile and embedded system implementations would make advanced denoising capabilities accessible to a broader range of applications and users.
 
